@@ -5,13 +5,9 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copiez le fichier JAR dans le conteneur
-COPY . .
-
-RUN chmod +x gradlew
+COPY . /app
 
 RUN ./gradlew build
-
-#COPY build/libs/csa-java-0.0.1-SNAPSHOT.jar .
 
 # Exposez le port sur lequel l'application Java s'exécute
 EXPOSE 8080
