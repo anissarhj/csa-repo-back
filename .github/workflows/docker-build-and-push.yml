@@ -19,11 +19,7 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Donner des permissions d'exécution au script Gradle
-        run: chmod +x gradlew
-
-      - name: Construction de l'application Spring Boot
-        run: ./gradlew build --no-daemon -x test  # Exclude the 'test' task
+     
 
       - name: Construction de l'image Docker
         run: docker build -t anissaras/csa-backend:latest .
