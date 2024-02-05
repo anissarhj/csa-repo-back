@@ -1,9 +1,17 @@
 version: '3'
 
+networks:
+  my_network2:
+    driver: bridge
+
+volumes:
+  volume_postgres:
+
 services:
-  postgresdb:
-    image: postgres:latest
-    restart: unless-stopped
+  postgres:
+    image: postgres
+    container_name: postgres_db
+    restart: always
     environment:
       POSTGRES_DB: anissadb
       POSTGRES_USER: anissa
@@ -11,24 +19,28 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - db:/var/lib/postgresql/data
+      - volume_postgres:/var/lib/postgresql/data
+    networks:
+      - my_network2
 
-  spring-boot:
-    image: eclipse-temurin:17-jdk-alpine
-    volumes:
-      - /tmp
-    build:
-      context: .
-      args:
-        JAR_FILE: build/libs/*.jar
+  spring-app:
+    image:  anissaras/csa-backend
     depends_on:
-      - postgresdb
+      - postgres
     ports:
       - "8081:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresdb:5432/anissadb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/anissadb
       SPRING_DATASOURCE_USERNAME: anissa
       SPRING_DATASOURCE_PASSWORD: anissa
+    networks:
+      - my_network2
 
-volumes:
-  db:
+  react-app:
+    image: anissaras/react-app
+    depends_on:
+      - spring-app
+    ports:
+      - "3001:3000"  # Changer le port externe à 3001
+    networks:
+      - my_network2
