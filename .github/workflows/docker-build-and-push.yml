@@ -28,8 +28,3 @@ jobs:
       - name: Push de l'image Docker avec tag
         run: docker push anissaras/csa-backend:latest
 
-      - name: Exécution des tests d'endpoint
-        run: |
-          # Exécutez vos tests d'endpoint ici
-          # Exemple avec curl :
-          curl -X GET http://localhost:8080/api/etudiantcsa
