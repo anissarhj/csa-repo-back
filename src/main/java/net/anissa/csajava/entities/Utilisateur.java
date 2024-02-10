@@ -1,11 +1,13 @@
 package net.anissa.csajava.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
+@Setter @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name = "utilisateur")
 public class Utilisateur {

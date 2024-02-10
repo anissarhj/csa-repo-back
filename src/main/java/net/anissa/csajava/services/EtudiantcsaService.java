@@ -16,9 +16,7 @@ public class EtudiantcsaService {
     @Autowired
     private EtudiantcsaRepository etudiantcsaRepository;
 
-    public List<Etudiantcsa> getAllEtudiantcsas() {
-        return etudiantcsaRepository.findAll();
-    }
+    public List<Etudiantcsa> getAllEtudiantcsas() { return etudiantcsaRepository.findAll();}
 
     public Optional<Etudiantcsa> getEtudiantcsaById(String id) {
         return etudiantcsaRepository.findById(id);
