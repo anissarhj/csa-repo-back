@@ -1,5 +1,6 @@
 package net.anissa.csajava.ControllerTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.anissa.csajava.CsaJavaApplication;
 import net.anissa.csajava.controllers.EtudiantcsaController;
 import net.anissa.csajava.entities.Etudiantcsa;
 import net.anissa.csajava.services.EtudiantcsaService;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,6 +22,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+@SpringBootTest(classes = CsaJavaApplication.class)
 
 class EtudiantcsaControllerTest {
 

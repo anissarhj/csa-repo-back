@@ -1,5 +1,6 @@
 package net.anissa.csajava.ServiceTest;
 
+import net.anissa.csajava.CsaJavaApplication;
 import net.anissa.csajava.entities.Etudiantcsa;
 import net.anissa.csajava.repositories.EtudiantcsaRepository;
 import net.anissa.csajava.services.EtudiantcsaService;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest(classes = CsaJavaApplication.class)
 class EtudiantcsaServiceTest {
 
     @Mock
