@@ -1,13 +1,17 @@
-# Utilisez une image de base avec Java 17 et Alpine Linux
+# Image de base
 FROM eclipse-temurin:17-jdk-alpine
 
-# Définissez le répertoire de travail
+# répertoire de travail
 WORKDIR /app
 
 # Copiez le fichier JAR dans le conteneur
 COPY . /app
 
+# Build l'app
 RUN ./gradlew build --no-daemon -x test
+
+# test l'app
+RUN ./gradlew test
 
 # Exposez le port sur lequel l'application Java s'exécute
 EXPOSE 8080
