@@ -7,7 +7,7 @@ WORKDIR /app
 # Copiez le fichier JAR dans le conteneur
 COPY . /app
 
-RUN ./gradlew build
+RUN ./gradlew build --no-daemon -x test
 
 # Exposez le port sur lequel l'application Java s'exécute
 EXPOSE 8080
