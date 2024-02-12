@@ -43,7 +43,7 @@ jobs:
       - name: execute le test
         run: | 
           curl -X POST \
-          - H "Content-Type : application/json" \
+          -H "Content-Type : application/json" \
           -d '{
           "id":2,
           "identifiant":"moi",
