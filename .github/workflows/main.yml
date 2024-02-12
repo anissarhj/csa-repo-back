@@ -27,3 +27,31 @@ jobs:
 
       - name: Push de l'image Docker avec tag
         run: docker push anissaras/csa-backend:latest
+
+      - name: demarrer docker compose
+        run : docker-compose up -d
+
+      - name: attendre demarrage
+        run: sleep 90
+
+      - name: afficher le journal
+        run: docker-compose logs
+
+      - name: afficher le docker
+        run: docker-compose ps
+
+      - name: execute le test
+        run: | 
+          curl -X POST \
+          - H "Content-Type : application/json" \
+          -d '{
+          "id":2,
+          "identifiant":"moi",
+          "motDePasse":"moimdp"
+          }' \
+          http://localhost:8081/api/utilisateurs/register
+
+      - name: arreter le service
+        run: docker-compose down
+
+
