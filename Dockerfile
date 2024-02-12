@@ -4,17 +4,11 @@ FROM eclipse-temurin:17-jdk-alpine
 # répertoire de travail
 WORKDIR /app
 
-# Copiez le fichier JAR dans le conteneur
-COPY . /app
-
-# Build l'app
-RUN ./gradlew build --no-daemon -x test
-
-# test l'app
-RUN ./gradlew test
+# Copier le fichier JAR de l'application dans le conteneur
+COPY build/libs/*.jar app.jar
 
 # Exposez le port sur lequel l'application Java s'exécute
 EXPOSE 8080
 
 # Commande d'entrée pour exécuter l'application au démarrage du conteneur
-ENTRYPOINT ["java", "-jar", "/app/build/libs/csa-java-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
