@@ -1,8 +1,15 @@
 version: '3'
 
+networks:
+  my_network2:
+    driver: bridge
+
+volumes:
+  volume_postgres:
+
 services:
   postgres:
-    image: postgres:latest
+    image: postgres
     container_name: postgres_db
     restart: always
     environment:
@@ -14,20 +21,17 @@ services:
     volumes:
       - volume_postgres:/var/lib/postgresql/data
     networks:
-      - csa-network
+      - my_network2
 
-  csa-backend:
-    image: anissaras/csa-backend:latest
+  spring-app:
+    image:  anissaras/java-app
     depends_on:
       - postgres
+    ports:
+      - "8081:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/anissadb
       SPRING_DATASOURCE_USERNAME: anissa
       SPRING_DATASOURCE_PASSWORD: anissa
-    ports:
-      - "8081:8080"
     networks:
-      - csa-network
-
-networks:
-  csa-network:
+      - my_network2
