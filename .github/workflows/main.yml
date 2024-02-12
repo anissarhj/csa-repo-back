@@ -45,8 +45,8 @@ jobs:
           curl -X POST \
           -H "Content-Type : application/json" \
           -d '{
-          "identifiant":"moi",
-          "motDePasse":"moimdp"
+            "identifiant": "anissa22",
+            "motDePasse": "2222"
           }' \
           http://localhost:8081/api/utilisateurs/register
 
